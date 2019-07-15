@@ -34,6 +34,9 @@
 //usage:       "Name:       debian\n"
 //usage:       "Address:    127.0.0.1\n"
 
+#ifdef __FreeBSD__
+#include <netinet/in.h>
+#endif
 #include <resolv.h>
 #include <net/if.h>	/* for IFNAMSIZ */
 //#include <arpa/inet.h>

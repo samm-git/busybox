@@ -36,7 +36,11 @@
 //usage:       "$ mknod /dev/fd0 b 2 0\n"
 //usage:       "$ mknod -m 644 /tmp/pipe p\n"
 
+#ifdef __FreeBSD__
+#include <sys/types.h>
+#else
 #include <sys/sysmacros.h>  // For makedev
+#endif
 
 #include "libbb.h"
 #include "libcoreutils/coreutils.h"

@@ -298,6 +298,16 @@
 # include <sys/sendfile.h>
 #endif
 
+/* test if it really works!!! */
+#ifdef __FreeBSD__
+#ifndef s6_addr16
+#define s6_addr16 __u6_addr.__u6_addr16
+#endif
+#ifndef s6_addr32
+#define s6_addr32 __u6_addr.__u6_addr32
+#endif
+#endif
+
 #define DEBUG 0
 
 #define IOBUF_SIZE 8192

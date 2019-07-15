@@ -717,7 +717,11 @@ packet4_ok(int read_len, int seq)
 // but defer it to kernel, we can't set source port,
 // and thus can't check it here in the reply
 			/* && up->source == ident */
-			 && up->dest == htons(port + seq)
+#ifdef __FreeBSD__
+			&& up->uh_dport == htons(port + seq)
+#else
+      && up->dest == htons(port + seq)
+#endif
 			) {
 				return (type == ICMP_TIMXCEED ? -1 : code + 1);
 			}
