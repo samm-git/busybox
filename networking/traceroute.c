@@ -990,7 +990,11 @@ traceroute_init(int op, char **argv)
 		}
 #if ENABLE_TRACEROUTE6
 		else {
+#ifndef __FreeBSD__
 			if (setsockopt_int(rcvsock, SOL_RAW, IPV6_CHECKSUM, 2) != 0)
+#else
+			if (setsockopt_int(rcvsock, SOL_IPV6, IPV6_CHECKSUM, 2) != 0)
+#endif
 				bb_perror_msg_and_die("setsockopt(%s)", "IPV6_CHECKSUM");
 			if (op & OPT_USE_ICMP)
 				snd = xsocket(AF_INET6, SOCK_RAW, IPPROTO_ICMPV6);
