@@ -53,6 +53,9 @@
 #include <termios.h>
 #include <time.h>
 #include <sys/param.h>
+#ifndef HAVE_XTABS
+# define XTABS TAB3
+#endif
 #include <pwd.h>
 #include <grp.h>
 #if ENABLE_FEATURE_SHADOWPASSWDS
@@ -159,9 +162,6 @@
 #endif
 #ifndef HAVE_FDATASYNC
 # define fdatasync fsync
-#endif
-#ifndef HAVE_XTABS
-# define XTABS TAB3
 #endif
 /*
  * Use '%m' to append error string on platforms that support it,
