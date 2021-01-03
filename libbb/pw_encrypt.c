@@ -11,7 +11,8 @@
 #include <unistd.h>
 #else
 #include <crypt.h>
-#endif#endif
+#endif
+#endif
 #include "libbb.h"
 
 /* static const uint8_t ascii64[] ALIGN1 =
